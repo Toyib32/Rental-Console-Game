@@ -13,9 +13,9 @@ public class MemberGold extends MemberSilver{
     int cashback;
     
     MemberGold() {
-        rentCost = 30000;
-        point = 5;
-        disc = 2;
+        biayaRental = 30000;
+        jumlahPoint = 5;
+        discount = 2;
         cashback = 5000;
     }
 }

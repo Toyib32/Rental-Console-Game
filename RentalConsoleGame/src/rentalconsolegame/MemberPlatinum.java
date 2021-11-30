@@ -13,9 +13,9 @@ public class MemberPlatinum extends MemberGold{
     int bonus;
     
     MemberPlatinum() {
-        rentCost = 45000;
-        point = 10;
-        disc = 3;
+        biayaRental = 45000;
+        jumlahPoint = 10;
+        discount = 3;
         cashback = 10000;
     }
     

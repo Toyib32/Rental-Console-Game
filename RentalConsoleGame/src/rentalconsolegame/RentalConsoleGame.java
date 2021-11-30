@@ -26,11 +26,11 @@ public class RentalConsoleGame extends Lainnya{
         MemberGold memGold = new MemberGold();
         MemberPlatinum memPlat = new MemberPlatinum();
         
-        insertMember();
+        insertDataMember();
         
         // atribut
         String idMember;
-        int dateRent, monthRent, yearRent, dateReturn, monthReturn, yearReturn;
+        int tglRental, blnRental, thnRental, tglReturn, blnReturn, thnReturn;
         Scanner input = new Scanner(System.in);
     
         // input
@@ -40,50 +40,50 @@ public class RentalConsoleGame extends Lainnya{
         idMember = input.nextLine();
         
         System.out.print("\n| Masukkan Tanggal Pinjam (1 - 31) | : ");
-        dateRent = input.nextInt();
+        tglRental = input.nextInt();
         
         System.out.print("| Masukkan Bulan Pinjam (1 - 12)   | : ");
-        monthRent = input.nextInt();
+        blnRental = input.nextInt();
         
         System.out.print("| Masukkan Tahun Pinjam (xxxx)     | : ");
-        yearRent = input.nextInt();
+        thnRental = input.nextInt();
         
         System.out.println("----------------------------------------------------");
         
         System.out.print("\n| Masukkan Tanggal Kembali (1 - 31)| : ");
-        dateReturn = input.nextInt();
+        tglReturn = input.nextInt();
         
         System.out.print("| Masukkan Bulan Kembali (1 - 12)  | : ");
-        monthReturn = input.nextInt();
+        blnReturn = input.nextInt();
         
         System.out.print("| Masukkan Tahun Kembali (xxxx)    | : ");
-        yearReturn = input.nextInt();
+        thnReturn = input.nextInt();
         
         System.out.println("\n+ -------------------------------------------------------------------------------------------- +");
-        searchMember(idMember);
+        cariDataMember(idMember);
         
         System.out.println("\n+ -------------------------------------------------------------------------------------------- +");
-        System.out.println("\n| Tanggal Pinjam                   | : " + dateRent + " - " + monthRent + " - " + yearRent);
-        System.out.println("| Tanggal Kembali                  | : " + dateReturn + " - " + monthReturn + " - " + yearReturn);
+        System.out.println("\n| Tanggal Pinjam                   | : " + tglRental + " - " + blnRental + " - " + thnRental);
+        System.out.println("| Tanggal Kembali                  | : " + tglReturn + " - " + blnReturn + " - " + thnReturn);
 
-        int rentalDuration = rentDuration(dateRent, monthRent, yearRent, dateReturn, monthReturn, yearReturn);
-        System.out.println("| Lama Sewa                        | : " + rentalDuration + " hari");
+        int lamaRental = lamaRental(tglRental, blnRental, thnRental, tglReturn, blnReturn, thnReturn);
+        System.out.println("| Lama Sewa                        | : " + lamaRental + " hari");
         
-        String jenisMember = getJenisMember(idMember);
+        String jenisMember = ambilJenisMember(idMember);
         if(jenisMember == "Silver") {
-            System.out.println("\n| Total Sewa                       | : Rp. " + memSil.costAmount(rentalDuration));
-            System.out.println("| Jumlah Poin                      | : " + memSil.getPoint(rentalDuration));
+            System.out.println("\n| Total Sewa                       | : Rp. " + memSil.biayaTotal(lamaRental));
+            System.out.println("| Jumlah Poin                      | : " + memSil.perolehanPoint(lamaRental));
         
         } else if(jenisMember == "Gold") {
-            System.out.println("\n| Total Sewa                       | : Rp. " + memGold.costAmount(rentalDuration));
-            System.out.println("| Jumlah Poin                      | : " + memGold.getPoint(rentalDuration));
+            System.out.println("\n| Total Sewa                       | : Rp. " + memGold.biayaTotal(lamaRental));
+            System.out.println("| Jumlah Poin                      | : " + memGold.perolehanPoint(lamaRental));
             System.out.println("| Jumlah Cashback              | : Rp. " + memGold.cashback);
             
         } else if(jenisMember == "Platinum") {
-            System.out.println("\n| Total Sewa                       | : Rp. " + memPlat.costAmount(rentalDuration));
-            System.out.println("| Jumlah Poin                      | : " + memPlat.getPoint(rentalDuration));
+            System.out.println("\n| Total Sewa                       | : Rp. " + memPlat.biayaTotal(lamaRental));
+            System.out.println("| Jumlah Poin                      | : " + memPlat.perolehanPoint(lamaRental));
             System.out.println("| Jumlah Cashback              | : Rp. " + memPlat.cashback);
-            System.out.println("| Bonus Pulsa                  | : Rp. " + memPlat.getBonus(rentalDuration));
+            System.out.println("| Bonus Pulsa                  | : Rp. " + memPlat.getBonus(lamaRental));
             
         } else {
             System.out.println("");

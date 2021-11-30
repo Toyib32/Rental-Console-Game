@@ -19,37 +19,37 @@ import java.util.Map;
  * @author ASUS
  */
 public class Lainnya {
-    static Map<String, List<String>> dataMember = new HashMap<String, List<String>>();
-    static int rentTime;
+    static Map<String, List<String>> member = new HashMap<String, List<String>>();
+    static int waktuRental;
     
     // insert data member 
-    static void insertMember() {
+    static void insertDataMember() {
         
         // insert M001
-        List<String> valueOne = new ArrayList<String>();
-        valueOne.add("Mr. X");
-        valueOne.add("Silver");
+        List<String> nilaiSatu = new ArrayList<String>();
+        nilaiSatu.add("Mr. X");
+        nilaiSatu.add("Silver");
         
         // insert M002
-        List<String> valueTwo = new ArrayList<String>();
-        valueTwo.add("Mr. Y");
-        valueTwo.add("Gold");
+        List<String> nilaiDua = new ArrayList<String>();
+        nilaiDua.add("Mr. Y");
+        nilaiDua.add("Gold");
         
         // insert M003
-        List<String> valueThree = new ArrayList<String>();
-        valueThree.add("Mr. Z");
-        valueThree.add("Platinum");
+        List<String> nilaiTiga = new ArrayList<String>();
+        nilaiTiga.add("Mr. Z");
+        nilaiTiga.add("Platinum");
         
-        dataMember.put("M001", valueOne);
-        dataMember.put("M002", valueTwo);
-        dataMember.put("M003", valueThree);
+        member.put("M001", nilaiSatu);
+        member.put("M002", nilaiDua);
+        member.put("M003", nilaiTiga);
     }
        
     // search data
-    static void searchMember(String idMember) {                
-        if(dataMember.containsKey(idMember)) {   
-            for(Map.Entry<String, List<String>> entry : dataMember.entrySet()) {
-                if(entry.getKey().equals(idMember)) {
+    static void cariDataMember(String id) {                
+        if(member.containsKey(id)) {   
+            for(Map.Entry<String, List<String>> entry : member.entrySet()) {
+                if(entry.getKey().equals(id)) {
                     
                 String key = entry.getKey();
                 List<String> values = entry.getValue();
@@ -65,12 +65,12 @@ public class Lainnya {
         }
     }
     
-    static String getJenisMember(String idMember) {
+    static String ambilJenisMember(String id) {
         
         String jenisMember = null;
-        if(dataMember.containsKey(idMember)) {
-            for(Map.Entry<String, List<String>> entry : dataMember.entrySet()) {
-                if(entry.getKey().equals(idMember)) {
+        if(member.containsKey(id)) {
+            for(Map.Entry<String, List<String>> entry : member.entrySet()) {
+                if(entry.getKey().equals(id)) {
                     
                 List<String> values = entry.getValue();               
                 jenisMember = values.get(1);
@@ -80,17 +80,17 @@ public class Lainnya {
         return jenisMember;
     }
     
-    static int rentDuration(int dateRent, int monthRent, int yearRent, int dateReturn, int monthReturn, int yearReturn) {
+    static int lamaRental(int tglRental, int blnRental, int thnRental, int tglReturn, int blnReturn, int thnReturn) {
         
-        if(yearReturn >= yearRent) {
-            if(monthReturn >= monthRent) {
+        if(thnReturn >= thnRental) {
+            if(blnReturn >= blnRental) {
                 
-                    LocalDateTime rent = LocalDateTime.of(yearRent, monthRent, dateRent, 23, 59, 59);
-                    LocalDateTime returned = LocalDateTime.of(yearReturn, monthReturn, dateReturn, 23, 59, 59);
+                    LocalDateTime rent = LocalDateTime.of(thnRental, blnRental, tglRental, 23, 59, 59);
+                    LocalDateTime returned = LocalDateTime.of(thnReturn, blnReturn, tglReturn, 23, 59, 59);
 
                     Duration duration = Duration.between(rent, returned);
         
-                    rentTime = (int) duration.toDays();      
+                    waktuRental = (int) duration.toDays();      
             } else {
                 System.out.println("Tanggal kembali tidak valid, silakan ulangi program");
             }
@@ -98,6 +98,6 @@ public class Lainnya {
             System.out.println("Tanggal kembali tidak valid, silakan ulangi program");
         }
         
-        return rentTime;
+        return waktuRental;
     }
 }

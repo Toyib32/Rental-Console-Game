@@ -11,28 +11,28 @@ package rentalconsolegame;
  */
 public class MemberSilver {
     // atribut
-    protected int rentCost, point, disc, tempCost, discountAmount, totalCost;
+    protected int biayaRental, jumlahPoint, discount, tempCost, totalDiskon, totalBiaya;
     
     
     // constructor
     MemberSilver() {
-        this.rentCost = 25000;
-        this.point = 1;
-        this.disc = 1;
+        this.biayaRental = 25000;
+        this.jumlahPoint = 1;
+        this.discount = 1;
     }
     
-    protected int costAmount(int rentalDuration) {
+    protected int biayaTotal(int lamaRental) {
         
-        tempCost = rentalDuration * rentCost;
-        discountAmount = (tempCost * disc) / 100;
-        totalCost = tempCost - discountAmount;
+        tempCost = lamaRental * biayaRental;
+        totalDiskon = (tempCost * discount) / 100;
+        totalBiaya = tempCost - totalDiskon;
         
-        return totalCost;
+        return totalBiaya;
     }
     
-    protected int getPoint(int rentalDuration) {
+    protected int perolehanPoint(int lamaRental) {
         
-        int totalPoint = rentalDuration * point;
+        int totalPoint = lamaRental * jumlahPoint;
         return totalPoint;
     }
     
